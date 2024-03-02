@@ -53,7 +53,7 @@ font = pygame.font.Font(None, 32)
 
 
 def update():
-    global speed, score, lives, run
+    global speed, score, lives, run, mowers
     
     keys = pygame.key.get_pressed()
     
@@ -67,15 +67,15 @@ def update():
         lives = 10
         score = 0
         update()
-    if mowers.__sizeof__() > 0:        
+    if len(mowers) > 0:        
         for mower in mowers:
             mower.move()
             if mower.rect.colliderect(floor_rect):
-                mowers.remove(mower)
+                mowers = [m for m in mowers if m != mower]  # <-- change this line
                 mowers.append(Mower(mower_image, (random.randint(25, 300), -50), random.randint(3, 10)))
                 lives -= 1
             if mower.rect.colliderect(player_rect):
-                mowers.remove(mower)
+                mowers = [m for m in mowers if m != mower]  # <-- change this line
                 mowers.append(Mower(mower_image, (random.randint(25, 300), -50), random.randint(3, 10)))
                 speed += .1
                 score += 1
