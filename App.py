@@ -1,5 +1,6 @@
 # This will be our main app page for the game
 # Author RyanB8411
+# Was given permission to use photos from yellowfox lawn
 
 import pygame
 import sys
